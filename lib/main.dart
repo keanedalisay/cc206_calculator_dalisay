@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
       home: const CalculatorScreen(),
@@ -34,46 +34,60 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   // either use a TextEditingController for each input field to get the value
   TextEditingController add1Controller = TextEditingController();
-
-  // or store each value in the state
-  int firstAddNum = 0;
+  TextEditingController add2Controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Unit 5 Calculator"),
+        title: const Text("Dalisay Unit 5 Calculator"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           // Add Row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "First Number"),
-                  // update the firstAddNum state
-                  onChanged: (value) {
-                    setState(() {
-                      firstAddNum = int.parse(value);
-                    });
-                  },
-                ),
-              ),
-              const Text(" + "),
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Second Number"),
-                ),
-              ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(labelText: "First Number"),
+                      keyboardType: TextInputType.number,
+                      controller: add1Controller,
+                    ),
+                  ),
+                  const Text(" + "),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(labelText: "Second Number"),
+                      keyboardType: TextInputType.number,
+                      controller: add2Controller,
+                    ),
+                  ),
 
-              Text(' = $sum'),
-              // 3.a Add an IconButton here
-
-              // b.b Add an button here
-            ],
+                  Text(' = $sum'),
+                  // 3.a Add an IconButton here
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          sum = int.parse(add1Controller.text) +
+                              int.parse(add2Controller.text);
+                        });
+                      },
+                      icon: const Icon(Icons.add)),
+                  // b.b Add an button here
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          sum = 0;
+                          add1Controller.clear();
+                          add2Controller.clear();
+                        });
+                      },
+                      icon: const Icon(Icons.clear))
+                ],
+              )
           ),
 
           // 3.c - Add the other operations
