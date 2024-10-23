@@ -57,7 +57,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       controller: add1Controller,
                     ),
                   ),
-                  const Text(" + "),
+                  Container(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      child: const Text(" + ", style: TextStyle(fontSize: 20))
+                  ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(labelText: "Second Number"),
@@ -66,7 +69,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     ),
                   ),
 
-                  Text(' = $sum'),
+                  Container(
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                  child: Text(' = $sum', style: TextStyle(fontSize: 20))
+                  ),
                   // 3.a Add an IconButton here
                   IconButton(
                       onPressed: () {
@@ -75,7 +81,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                               int.parse(add2Controller.text);
                         });
                       },
-                      icon: const Icon(Icons.add)),
+                      icon: const Icon(Icons.add), color: Colors.green),
                   // b.b Add an button here
                   IconButton(
                       onPressed: () {
@@ -85,7 +91,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                           add2Controller.clear();
                         });
                       },
-                      icon: const Icon(Icons.clear))
+                      icon: const Icon(Icons.clear), color: Colors.red)
                 ],
               )
           ),
