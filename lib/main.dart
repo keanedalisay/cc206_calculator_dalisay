@@ -55,7 +55,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         title: const Text("Dalisay Unit 5 Calculator"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
           // Add Row
